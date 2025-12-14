@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>mainWindow</class>
- <widget class="QMainWindow" name="mainWindow">
+ <class>new_course_window</class>
+ <widget class="QMainWindow" name="new_course_window">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>625</width>
-    <height>526</height>
+    <width>529</width>
+    <height>477</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>New Course</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0">
     <property name="horizontalSpacing">
      <number>6</number>
     </property>
-    <item row="7" column="0" colspan="3">
+    <item row="5" column="0" colspan="3">
      <spacer name="verticalSpacer_3">
       <property name="orientation">
        <enum>Qt::Orientation::Vertical</enum>
@@ -30,33 +30,6 @@
        </size>
       </property>
      </spacer>
-    </item>
-    <item row="9" column="0">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>OpenAI URL</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0" colspan="3">
-     <widget class="QPushButton" name="submitButton">
-      <property name="text">
-       <string>Start Learning</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0" colspan="3">
-     <widget class="QPlainTextEdit" name="promptInput">
-      <property name="layoutDirection">
-       <enum>Qt::LayoutDirection::LeftToRight</enum>
-      </property>
-      <property name="plainText">
-       <string>I want to learn basic Spanish.</string>
-      </property>
-      <property name="placeholderText">
-       <string>I want to learn...</string>
-      </property>
-     </widget>
     </item>
     <item row="0" column="0" colspan="3">
      <spacer name="verticalSpacer_2">
@@ -71,8 +44,8 @@
       </property>
      </spacer>
     </item>
-    <item row="10" column="0">
-     <widget class="QLineEdit" name="openaiUrlInput">
+    <item row="15" column="0">
+     <widget class="QLineEdit" name="openai_url_input">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -90,8 +63,8 @@
       </property>
      </widget>
     </item>
-    <item row="10" column="1" colspan="2">
-     <widget class="QLineEdit" name="openaiApiKeyInput">
+    <item row="15" column="1" colspan="2">
+     <widget class="QLineEdit" name="openai_api_key_input">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -100,8 +73,8 @@
       </property>
      </widget>
     </item>
-    <item row="9" column="1">
-     <widget class="QLabel" name="label_3">
+    <item row="14" column="1">
+     <widget class="QLabel" name="openai_api_key_label">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
         <horstretch>1</horstretch>
@@ -113,6 +86,33 @@
       </property>
      </widget>
     </item>
+    <item row="2" column="0" colspan="3">
+     <widget class="QPlainTextEdit" name="prompt_input">
+      <property name="layoutDirection">
+       <enum>Qt::LayoutDirection::LeftToRight</enum>
+      </property>
+      <property name="plainText">
+       <string>I want to learn basic Spanish.</string>
+      </property>
+      <property name="placeholderText">
+       <string>I want to learn...</string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="0">
+     <widget class="QLabel" name="openai_url_label">
+      <property name="text">
+       <string>OpenAI URL</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0" colspan="3">
+     <widget class="QPushButton" name="submit_button">
+      <property name="text">
+       <string>Start Learning</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -120,7 +120,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>625</width>
+     <width>529</width>
      <height>30</height>
     </rect>
    </property>
