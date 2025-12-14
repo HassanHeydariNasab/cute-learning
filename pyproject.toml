@@ -1,0 +1,11 @@
+[project]
+name = "cute-learning"
+version = "0.1.0"
+description = "Learn everything in a fun way."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "openai>=2.11.0",
+    "pyside6>=6.10.1",
+    "python-dotenv>=1.2.1",
+]
