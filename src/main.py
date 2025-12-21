@@ -3,8 +3,9 @@ import sqlite3
 import sys
 from PySide6.QtWidgets import QApplication
 
-from windows.courses import CoursesWindow
-from windows.new_course import NewCourseWindow
+from windows.courses.courses import CoursesWindow
+from windows.new_course.new_course import NewCourseWindow
+from windows.course.course import CourseWindow
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
@@ -39,19 +40,18 @@ if __name__ == "__main__":
     )
     db.commit()
 
-    courses = db.execute(
-        "SELECT id, name FROM course ORDER BY created_at DESC"
-    ).fetchall()
-
     newCourseWindow = NewCourseWindow(app, db)
     coursesWindow = CoursesWindow(app, db)
+    courseWindow = CourseWindow(app, db)
 
-    newCourseWindow.created_course.connect(coursesWindow.on_course_created)
+    newCourseWindow.course_was_created.connect(coursesWindow.on_course_created)
+
     coursesWindow.open_new_course_window.connect(newCourseWindow.window.show)
+    coursesWindow.open_course_window.connect(courseWindow.load_course)
 
-    coursesWindow.window.show()
+    courseWindow.open_new_course_window.connect(newCourseWindow.window.show)
+    courseWindow.open_courses_window.connect(coursesWindow.window.show)
 
-    if len(courses) == 0:
-        newCourseWindow.window.show()
+    courseWindow.window.show()
 
     sys.exit(app.exec())

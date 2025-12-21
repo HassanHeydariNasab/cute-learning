@@ -18,13 +18,13 @@ from PySide6.QtCore import QFile, QIODevice, QObject, Signal
 from openai import OpenAI
 from dotenv import load_dotenv
 
-from models.ai import Course
+from models.ai import CreateCourseInput
 
 load_dotenv()
 
 
 class NewCourseWindow(QObject):
-    created_course = Signal(int)
+    course_was_created = Signal(int)
 
     def __init__(self, app: QApplication, db: sqlite3.Connection):
         super().__init__()
@@ -77,13 +77,13 @@ class NewCourseWindow(QObject):
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a learning materials generator that generates learning materials based on the user's prompt."
+                    "content": "You are a learning material generator that generates learning materials based on the user's prompt."
                     + " You will generate a list of 3-5 questions and answers that the user can use to learn the content."
-                    + " Always generate multiple items (at least 3) to provide comprehensive coverage of the topic.",
+                    + " Always generate multiple questions (at least 3) to provide comprehensive coverage of the topic.",
                 },
                 {"role": "user", "content": prompt},
             ],
-            response_format=Course,
+            response_format=CreateCourseInput,
         )
 
         course = response.choices[0].message.parsed
@@ -115,6 +115,6 @@ class NewCourseWindow(QObject):
 
         self.db.commit()
 
-        self.created_course.emit(course_id)
+        self.course_was_created.emit(course_id)
 
         self.window.close()

@@ -20,6 +20,7 @@ load_dotenv()
 
 class CoursesWindow(QObject):
     open_new_course_window = Signal()
+    open_course_window = Signal(int)
 
     def __init__(self, app: QApplication, db: sqlite3.Connection):
         super().__init__()
@@ -49,9 +50,9 @@ class CoursesWindow(QObject):
         self.courses_scroll_area = self.window.courses_scroll_area
         assert isinstance(self.courses_scroll_area, QScrollArea)
 
-        self.update_courses()
+        self.load_courses()
 
-    def update_courses(self):
+    def load_courses(self):
         self.cursor.execute(
             "SELECT id, name FROM course ORDER BY created_at DESC",
         )
@@ -69,16 +70,9 @@ class CoursesWindow(QObject):
         self.open_new_course_window.emit()
 
     def on_course_clicked(self, course_id: int):
-        print(course_id)
-        self.cursor.execute(
-            "SELECT * FROM question WHERE course_id = ?",
-            (course_id,),
-        )
-        questions = self.cursor.fetchall()
-        for question in questions:
-            print(question)
+        self.window.hide()
+        self.open_course_window.emit(course_id)
 
     @Slot(int)
     def on_course_created(self, course_id: int):
-        print(f"Course created: {course_id}")
-        self.update_courses()
+        self.load_courses()
